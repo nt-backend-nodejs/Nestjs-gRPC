@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sum;
+
+service SumService {
+  rpc SumArray (SumArrayRequest) returns (SumArrayResponse);
+}
+
+message SumArrayRequest {
+  repeated int32 numbers = 1;  
+}
+
+message SumArrayResponse {
+  int32 result = 1;          
+}

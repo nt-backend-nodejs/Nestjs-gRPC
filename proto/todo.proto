@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package todo;
+
+import "google/protobuf/empty.proto";
+
+service TodoService {
+  rpc CreateTodo(TodoCreateRequest) returns (TodoCreateResponse);
+  rpc GetTodos(google.protobuf.Empty) returns (TodosGetResponse);
+  rpc UpdateTodo(TodoUpdateRequest) returns (TodoUpdateResponse);
+  rpc DeleteTodo(TodoDeleteRequest) returns (TodoDeleteResponse);
+  rpc GetTodoById(TodoGetByIdRequest) returns (TodoGetResponse);
+}
+
+service ProjectService {
+  rpc CreateTodo(TodoCreateRequest) returns (TodoCreateResponse);
+  rpc GetTodos(google.protobuf.Empty) returns (TodosGetResponse);
+  rpc UpdateTodo(TodoUpdateRequest) returns (TodoUpdateResponse);
+  rpc DeleteTodo(TodoDeleteRequest) returns (TodoDeleteResponse);
+  rpc GetTodoById(TodoGetByIdRequest) returns (TodoGetResponse);
+}
+
+message TodoCreateRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message TodoCreateResponse {
+  string message = 1;
+  int32 status = 2;
+}
+
+message TodosGetResponse { repeated Todos todos = 1; }
+
+message TodoGetResponse { repeated Todos todos = 1; }
+
+message Todos {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message TodoDeleteRequest { string id = 1; }
+
+message TodoDeleteResponse {
+  string message = 1;
+  string status = 2;
+}
+
+message TodoGetByIdRequest { string id = 1; }
+
+message TodoUpdateRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message TodoUpdateResponse {
+  string message = 1;
+  string status = 2;
+}
